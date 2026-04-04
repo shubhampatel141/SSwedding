@@ -1,0 +1,449 @@
+/* =============================================
+   Global Reset & Variables
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gold:       #c9a96e;
+  --gold-light: #e8d5b0;
+  --blush:      #f5e6e8;
+  --deep:       #2c1810;
+  --text:       #4a3728;
+  --text-light: #7a6a5a;
+  --white:      #ffffff;
+  --bg:         #fdfaf7;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Lato', 'Helvetica Neue', Arial, sans-serif;
+
+  --section-pad: 90px 20px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+}
+
+/* =============================================
+   Navigation
+   ============================================= */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(44, 24, 16, 0.88);
+  backdrop-filter: blur(6px);
+  padding: 14px 30px;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: var(--gold-light);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav a:hover { color: var(--white); }
+
+/* =============================================
+   Hero
+   ============================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* Elegant gradient background */
+  background: linear-gradient(135deg, #2c1810 0%, #5c3d2e 40%, #8b5e52 70%, #c9a96e 100%);
+  overflow: hidden;
+}
+
+/* Decorative pattern overlay */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(201, 169, 110, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(201, 169, 110, 0.12) 0%, transparent 50%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.hero-sub {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+}
+
+.hero-names {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: var(--white);
+  line-height: 1.15;
+  font-weight: 400;
+}
+
+.hero-names span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* =============================================
+   Divider
+   ============================================= */
+.divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 24px 0;
+}
+
+.divider.center { margin: 24px auto; }
+
+.divider.light { background: rgba(201, 169, 110, 0.6); }
+
+/* =============================================
+   Countdown
+   ============================================= */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin: 28px 0 36px;
+  flex-wrap: wrap;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 64px;
+}
+
+.countdown-item span {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  color: var(--white);
+  line-height: 1;
+}
+
+.countdown-item small {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-top: 4px;
+}
+
+/* =============================================
+   Buttons
+   ============================================= */
+.btn {
+  display: inline-block;
+  padding: 13px 36px;
+  border: 2px solid var(--gold);
+  color: var(--gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  transition: background 0.25s, color 0.25s;
+}
+
+.btn:hover {
+  background: var(--gold);
+  color: var(--deep);
+}
+
+.btn-light {
+  border-color: var(--white);
+  color: var(--white);
+  background: transparent;
+}
+
+.btn-light:hover {
+  background: var(--white);
+  color: var(--deep);
+}
+
+/* =============================================
+   Sections Common
+   ============================================= */
+.section { padding: var(--section-pad); }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.container.narrow {
+  max-width: 600px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 400;
+  color: var(--deep);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.section-title.light { color: var(--white); }
+
+/* =============================================
+   Our Story
+   ============================================= */
+.story { background: var(--bg); }
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.story-item {
+  text-align: center;
+  padding: 30px 20px;
+  border-top: 2px solid var(--gold-light);
+}
+
+.story-year {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.story-item p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* =============================================
+   Events
+   ============================================= */
+.events {
+  background: var(--blush);
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 28px;
+  margin-top: 50px;
+}
+
+.event-card {
+  background: var(--white);
+  padding: 36px 26px;
+  text-align: center;
+  border-bottom: 3px solid var(--gold-light);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(44, 24, 16, 0.1);
+}
+
+.event-card.highlight {
+  border-bottom-color: var(--gold);
+  background: linear-gradient(160deg, #fff8f0, var(--white));
+}
+
+.event-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.event-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--deep);
+  margin-bottom: 8px;
+}
+
+.event-date {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px !important;
+}
+
+.event-card p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* =============================================
+   Gallery
+   ============================================= */
+.gallery { background: var(--bg); }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 50px;
+}
+
+.gallery-placeholder {
+  aspect-ratio: 1;
+  background: var(--blush);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  border-radius: 2px;
+  color: var(--gold-light);
+}
+
+.gallery-note {
+  text-align: center;
+  margin-top: 28px;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* =============================================
+   RSVP
+   ============================================= */
+.rsvp {
+  background: linear-gradient(135deg, #2c1810 0%, #5c3d2e 100%);
+}
+
+.rsvp-intro {
+  text-align: center;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 36px;
+  font-size: 1rem;
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(201, 169, 110, 0.4);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-row input::placeholder,
+.form-row textarea::placeholder {
+  color: rgba(255,255,255,0.45);
+}
+
+.form-row select option {
+  color: var(--deep);
+  background: var(--white);
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  border-color: var(--gold);
+}
+
+.rsvp-form .btn-light {
+  align-self: center;
+  margin-top: 8px;
+  min-width: 160px;
+}
+
+.rsvp-success {
+  text-align: center;
+  color: var(--gold-light);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid rgba(201, 169, 110, 0.3);
+}
+
+.hidden { display: none; }
+
+/* =============================================
+   Footer
+   ============================================= */
+.footer {
+  background: var(--deep);
+  text-align: center;
+  padding: 36px 20px;
+  color: var(--gold-light);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.footer-small {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: rgba(201, 169, 110, 0.5);
+  margin-top: 8px;
+}
+
+/* =============================================
+   Responsive
+   ============================================= */
+@media (max-width: 600px) {
+  .nav ul { gap: 18px; }
+  .countdown { gap: 16px; }
+  .countdown-item span { font-size: 2rem; }
+  :root { --section-pad: 60px 18px; }
+}
